@@ -5,7 +5,7 @@ export function PrivateRoute() {
 	let { token, user } = AuthUser();
 	// let token = false;
 	if (user) {
-		console.log(user);
+		// console.log(user);
 	}
 	if (!token) {
 		return <Navigate to="/login" />;
