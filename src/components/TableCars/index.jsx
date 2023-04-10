@@ -23,8 +23,8 @@ export function Table() {
 	return (
 		<>
 			{!cars ? (
-				<p className="text-sm">...Loading</p>
-			) : (
+				<p className='text-sm'>...Loading</p>
+                ) : (
 				<>
 					<div className="p-5 h-full bg-gray-100">
 						<h1 className="text-xl mb-2">Our Cars</h1>
@@ -99,9 +99,9 @@ export function Table() {
 													{/* <button className="p-2 rounded-lg bg-indigo-500 text-white  border-2 border-indigo-500">
 														<HiOutlineInformationCircle/>
 													</button> */}
-													<button className="p-2 rounded-lg bg-indigo-500 text-white  border border-indigo-500 hover:bg-transparent hover:text-indigo-500 ">
+													<Link to={`/car/${car.id}`} className="p-2 rounded-lg bg-indigo-500 text-white  border border-indigo-500 hover:bg-transparent hover:text-indigo-500 ">
                                                     <HiPencilAlt />
-													</button>
+													</Link>
 													<button
 														className="p-2 rounded-lg bg-red-500 text-white  border border-red-500 hover:bg-transparent hover:text-red-500"
 														onClick={() => handleDeleteCar(car.id)}
@@ -115,8 +115,8 @@ export function Table() {
 							</table>
 						</div>
 					</div>
-					<Link to={'/'} className="ml-3 mt-6 text-red-500 underline">
-						go to Dashboard page{' '}
+					<Link to={'/AddCar'} className="ml-3 mt-6 text-white underline">
+						<button className='p-2 text-sm font-medium  ml-2 border border-indigo-500  rounded-lg bg-indigo-500  hover:bg-transparent  hover:text-indigo-500'>Add New Car </button>
 					</Link>
 				</>
 			)}
