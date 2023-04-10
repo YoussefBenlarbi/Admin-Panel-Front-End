@@ -35,6 +35,7 @@ function App() {
 						<Route path="reservations" element={<Reservations />} />
 						<Route path="customers" element={<Customers />} />
 						<Route path="cars" element={<Cars />} />
+						<Route path="car/:id" element={<EditCar />} />
 					</Route>
 				</Route>
 				<Route>

@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Table } from './TableCars';
 
 function Cars() {
 	return (
 		<div>
-			This is Cars
-			<Link to={'/'} className="ml-3 text-red-500 underline">
-				go to Dashboard page{' '}
-			</Link>
+			<Table/>
+			
 		</div>
 	);
 }

@@ -1,112 +1,95 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getOrderStatus } from '../lib/utils';
-const recentOrderData = [
-	{
-		id: '1',
-		product_id: '4324',
-		customer_id: '23143',
-		customer_name: 'Shirley A. Lape',
-		order_date: '2022-05-17T03:24:00',
-		order_total: '$435.50',
-		current_order_status: 'PLACED',
-		shipment_address: 'Cottage Grove, OR 97424',
-	},
-	{
-		id: '7',
-		product_id: '7453',
-		customer_id: '96453',
-		customer_name: 'Ryan Carroll',
-		order_date: '2022-05-14T05:24:00',
-		order_total: '$96.35',
-		current_order_status: 'CONFIRMED',
-		shipment_address: 'Los Angeles, CA 90017',
-	},
-	{
-		id: '2',
-		product_id: '5434',
-		customer_id: '65345',
-		customer_name: 'Mason Nash',
-		order_date: '2022-05-17T07:14:00',
-		order_total: '$836.44',
-		current_order_status: 'SHIPPED',
-		shipment_address: 'Westminster, CA 92683',
-	},
-	{
-		id: '3',
-		product_id: '9854',
-		customer_id: '87832',
-		customer_name: 'Luke Parkin',
-		order_date: '2022-05-16T12:40:00',
-		order_total: '$334.50',
-		current_order_status: 'SHIPPED',
-		shipment_address: 'San Mateo, CA 94403',
-	},
-	{
-		id: '4',
-		product_id: '8763',
-		customer_id: '09832',
-		customer_name: 'Anthony Fry',
-		order_date: '2022-05-14T03:24:00',
-		order_total: '$876.00',
-		current_order_status: 'OUT_FOR_DELIVERY',
-		shipment_address: 'San Mateo, CA 94403',
-	},
-	{
-		id: '5',
-		product_id: '5627',
-		customer_id: '97632',
-		customer_name: 'Ryan Carroll',
-		order_date: '2022-05-14T05:24:00',
-		order_total: '$96.35',
-		current_order_status: 'DELIVERED',
-		shipment_address: 'Los Angeles, CA 90017',
-	},
-];
+import AuthUser from './PrivateRoute/AuthUser';
+// import { getOrderStatus } from '../lib/utils';
 function RecentOrders() {
+	const { http, token } = AuthUser();
+	const [reservations, setReservations] = useState();
+	useEffect(() => {
+		const getReservations = async () => {
+			const urlReservations = await http.get('/reservations');
+			setReservations(urlReservations.data);
+		};
+		getReservations();
+	}, []);
+	if (reservations) {
+		console.log(reservations);
+	}
 	return (
 		<div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
-			<strong className="text-gray-700 font-medium">Recent Orders</strong>
-			<div className="mt-3">
-				<table className="w-full text-gray-700 border-x border-gray-200 rounded-sm">
-					<thead>
-						<tr>
-							<td>id</td>
-							<td>Product id </td>
-							<td>Customer name </td>
-							<td>Order date </td>
-							<td>Order Total </td>
-							<td>Shipping Adrees </td>
-							<td>Order status </td>
-						</tr>
-					</thead>
-					<tbody>
-						{recentOrderData.map((order) => (
-							<tr key={order.id}>
-								<td>
-									<Link to={`/order/${order.id}`}>#{order.product_id}</Link>
-								</td>
-								<td>
-									<Link to={`/product/${order.product_id}`}>
-										{order.product_id}
-									</Link>
-								</td>
-								<td>
-									<Link to={`/customer/${order.customer_name}`}>
-										{order.customer_name}
-									</Link>
-								</td>
-								<td>{new Date(order.order_date).toLocaleDateString()}</td>
-								<td>{order.order_total}</td>
-								<td>{order.shipement_total}</td>
-								<td>{getOrderStatus(order.current_order_status)}</td>
-							</tr>
-						))}
-					</tbody>
-				</table>
-			</div>
+			{!reservations ? (
+				<p>...Loading</p>
+			) : (
+				<>
+					<strong className="text-gray-700 font-medium">Recent Orders</strong>
+					<div className="mt-3">
+						<table className="w-full text-gray-700 border-x border-gray-200 rounded-sm">
+							<thead>
+								<tr>
+									<td>id</td>
+									<td>Customer </td>
+									<td>car_id </td>
+									<td>date_start </td>
+									<td>date_end </td>
+									<td>date_reservation </td>
+									<td>status </td>
+									<td>total</td>
+								</tr>
+							</thead>
+							<tbody>
+								{reservations.map((order) => (
+									<tr key={order.id}>
+										<td>
+											<Link to={`/order/${order.id}`}>#{order.id}</Link>
+										</td>
+										<td>
+											<Link to={`/customer/${order.user_id}`}>
+												{order.user.name}
+											</Link>
+										</td>
+										<td>
+											<Link to={`/car/${order.car_id}`}>{order.car_id}</Link>
+										</td>
+										<td>{new Date(order.date_start).toLocaleDateString()}</td>
+										<td>{new Date(order.date_end).toLocaleDateString()}</td>
+										<td>
+											{new Date(order.date_reservation).toLocaleDateString()}
+										</td>
+										<td>
+											<SpanWrapper status={order.status} />
+										</td>
+										<td>{order.total}</td>
+										{/* <td>{getOrderStatus(order.current_order_status)}</td> */}
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</>
+			)}
 		</div>
 	);
 }
 
 export default RecentOrders;
+
+function SpanWrapper(props) {
+	const { status } = props;
+	return (
+		<div>
+			{status == 0 ? (
+				<span className="p-1.5 w-full  text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 rounded-lg bg-opacity-50">
+					Cancelled
+				</span>
+			) : status == 1 ? (
+				<span className="p-1.5 w-full  text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50">
+					Pending
+				</span>
+			) : (
+				<span className="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
+					Confirmed
+				</span>
+			)}
+		</div>
+	);
+}

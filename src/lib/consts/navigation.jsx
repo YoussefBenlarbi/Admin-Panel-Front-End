@@ -7,7 +7,9 @@ import {
 	HiOutlineAnnotation,
 	HiOutlineQuestionMarkCircle,
 	HiOutlineCog,
+	
 } from 'react-icons/hi';
+import { FcAutomotive } from 'react-icons/fc';
 
 export const DASHBOARD_SIDEBAR_LINKS = [
 	{

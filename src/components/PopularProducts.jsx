@@ -53,7 +53,8 @@ function PopularProducts() {
 				{popularProducts.map((product) => (
 					<Link
 						to={`/product/${product.id}`}
-						className="flex hover:no-underline"
+						className="flex hover:no-underline" 
+						key={product.id}
 					>
 						<div className="w-10 h-10 min-w-10 bg-gray-200 rounded">
 							<img
