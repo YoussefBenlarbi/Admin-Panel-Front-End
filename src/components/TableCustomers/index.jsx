@@ -40,7 +40,7 @@ export function Table() {
 										<th className="w-24 p-3 text-sm font-semibold tracking-wide text-left">
 											Status
 										</th>
-										<th className="w-25 p-3 text-sm font-semibold tracking-wide text-left">
+										<th className="w-25 p-3 text-sm font-semibold tracking-wide text-center">
 											Activate User
 										</th>
 									</tr>

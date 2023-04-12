@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import AuthUser from '../PrivateRoute/AuthUser';
 import styled from 'styled-components';
 
 export function EditReservation() {
 	const { id } = useParams();
 	const { http } = AuthUser();
+	const navigate =useNavigate();
 	const [reservation, setReservation] = useState();
 	const [cars, setCars] = useState();
 	const [users, setUsers] = useState();
@@ -61,9 +62,19 @@ export function EditReservation() {
 			return { ...prev, [name]: value };
 		});
 	}
-	function handleSubmit(e) {
+	async function handleSubmit(e) {
 		e.preventDefault();
-		console.log(state);
+		await http.patch(`/reservations/${id}`, {
+			date_start: date_start,
+			date_end: date_end,
+			date_reservation: date_reservation,
+			status: status,
+			note: note,
+			user_id: user_id,
+			car_id: car_id,
+		});
+		// console.log(reservation);
+		navigate('/reservations');
 	}
 
 	// console.log(users);
@@ -110,7 +121,7 @@ export function EditReservation() {
 					<input
 						type="date"
 						id="date3"
-						name='date_reservation'
+						name="date_reservation"
 						value={date_reservation}
 						onChange={(e) => handleChange(e)}
 						className="p-1 border text-sm rounded-md focus:border-2 focus:border-blue-500 focus:outline-none "
@@ -122,7 +133,7 @@ export function EditReservation() {
 					</label>
 					<select
 						id="status"
-						name='status'
+						name="status"
 						className="p-1 focus:outline-none border focus:border-2 focus:border-blue-500 border-gray-200 rounded-lg text-sm"
 						value={status}
 						onChange={(e) => handleChange(e)}
@@ -142,7 +153,7 @@ export function EditReservation() {
 						id="note"
 						cols="12"
 						rows="2"
-						name='note'
+						name="note"
 						value={note}
 						onChange={(e) => handleChange(e)}
 						className="border focus:border-2 border-gray-200 p-1 rounded-md  focus:border-blue-500 focus:outline-none"
@@ -156,7 +167,7 @@ export function EditReservation() {
 						id="users"
 						className="p-1 focus:outline-none border focus:border-2 focus:border-blue-500 border-gray-200 rounded-lg text-sm"
 						value={user_id}
-						name='user_id'
+						name="user_id"
 						onChange={(e) => handleChange(e)}
 					>
 						<option value="test" disabled={true}>
@@ -178,7 +189,7 @@ export function EditReservation() {
 						id="car"
 						className="p-1 focus:outline-none border focus:border-2 focus:border-blue-500 border-gray-200 rounded-lg text-sm"
 						value={car_id}
-						name='car_id'
+						name="car_id"
 						onChange={(e) => handleChange(e)}
 					>
 						<option disabled={true}>Choisir la Voiture</option>
@@ -199,26 +210,6 @@ export function EditReservation() {
 					</button>
 				</div>
 			</form>
-		</div>
-	);
-}
-function StatusWrapper(props) {
-	const { status } = props;
-	return (
-		<div>
-			{status == 0 ? (
-				<span className="p-1.5 w-full  text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 rounded-lg bg-opacity-50">
-					Cancelled
-				</span>
-			) : status == 1 ? (
-				<span className="p-1.5 w-full  text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50">
-					Pending
-				</span>
-			) : (
-				<span className="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
-					Confirmed
-				</span>
-			)}
 		</div>
 	);
 }
