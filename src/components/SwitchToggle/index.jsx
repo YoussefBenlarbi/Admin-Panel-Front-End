@@ -10,9 +10,9 @@ export function SwitchToggle(props) {
 		// Add your custom logic here
 		console.log('Switch toggled!');
 		if (enabled === false) {
-			await http.patch(`/users/${id}`, { ...user, is_active: 1 });
+			await http.patch(`/activate/${id}`);
 		} else {
-			await http.patch(`/users/${id}`, { ...user, is_active: 0 });
+			await http.patch(`/desactivate/${id}`);
 		}
 		setEnabled(!enabled);
 		window.location.reload();

@@ -40,10 +40,10 @@ function Reservations() {
 			{!reservations ? (
 				<p className="text-sm">...Loading</p>
 			) : (
-				<div className="p-3 h-full bg-gray-100">
+				<div className="p-3 h-full  bg-gray-100">
 					{' '}
 					<h1 className="text-xl mb-2">Our Reservations</h1>
-					<table className="w-full rounded-lg shadow overflow-auto p-5 h-full bg-gray-100">
+					<table className="w-full  rounded-lg mb-7 shadow overflow-auto p-5  bg-gray-100 ">
 						<thead className="bg-gray-50 border-b-2 border-gray-200">
 							<tr>
 								<th className="w-20 p-3 text-sm font-semibold tracking-wide text-left">
