@@ -2,23 +2,39 @@ import React, { useEffect, useState } from 'react';
 import AuthUser from '../PrivateRoute/AuthUser';
 import { SwitchToggle } from '../SwitchToggle';
 import { Link } from 'react-router-dom';
+import { HiOutlineTrash, HiPencilAlt } from 'react-icons/hi';
+import swal from 'sweetalert';
+import {SwalConfig} from '../swalConfig/beforeDelete'
 export function Table() {
 	const { http, token } = AuthUser();
 	const [users, setUsers] = useState();
+	const getUsers = async () => {
+		const urlUsers = await http.get('/users');
+		setUsers(urlUsers.data);
+	};
 	useEffect(() => {
-		const getUsers = async () => {
-			const urlUsers = await http.get('/users');
-			setUsers(urlUsers.data);
-		};
 		getUsers();
 	}, []);
 	if (users) {
 		console.log(users);
 	}
+	async function handleDeleteUser(id) {
+		swal(SwalConfig).then(async (willDelete) => {
+			if (willDelete) {
+				swal('Poof! the user has been deleted!', {
+					icon: 'success',
+				});
+				await http.delete(`users/${id}`);
+				getUsers();
+			} else {
+				swal('Nothing was deleted !');
+			}
+		});
+	}
 	return (
 		<>
 			{!users ? (
-				<p className='text-sm'>...Loading</p>
+				<p className="text-sm">...Loading</p>
 			) : (
 				<>
 					<div className="p-5 h-full bg-gray-100">
@@ -43,6 +59,9 @@ export function Table() {
 										<th className="w-25 p-3 text-sm font-semibold tracking-wide text-center">
 											Activate User
 										</th>
+										<th className="w-25 p-3 text-sm font-semibold tracking-wide text-left">
+											operations
+										</th>
 									</tr>
 								</thead>
 								<tbody className="divide-y divide-gray-100 bg-white">
@@ -66,8 +85,22 @@ export function Table() {
 												<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
 													<SpanWrapper is_active={user.is_active} />
 												</td>
-												<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+												<td className="p-3 text-sm text-gray-700 whitespace-nowrap text-center">
 													<SwitchToggle user={user} />
+												</td>
+												<td className="p-3 text-sm flex space-x-1  text-gray-700 whitespace-nowrap">
+													<Link
+														to={`/edit-customer/${user.id}`}
+														className="p-2 rounded-lg bg-indigo-500 text-white  border border-indigo-500 hover:bg-transparent hover:text-indigo-500 "
+													>
+														<HiPencilAlt />
+													</Link>
+													<button
+														className="p-2 rounded-lg bg-red-500 text-white  border border-red-500 hover:bg-transparent hover:text-red-500"
+														onClick={() => handleDeleteUser(user.id)}
+													>
+														<HiOutlineTrash />
+													</button>
 												</td>
 											</tr>
 										))}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import AuthUser from './PrivateRoute/AuthUser';
 import { HiOutlineTrash, HiPencilAlt } from 'react-icons/hi';
 import swal from 'sweetalert';
+import { SwalConfig } from './swalConfig/beforeDelete';
 // import { getOrderStatus } from '../lib/utils';
 function Reservations() {
 	const { http, token } = AuthUser();
@@ -11,17 +12,9 @@ function Reservations() {
 		const urlReservations = await http.get('/reservations');
 		setReservations(urlReservations.data);
 	};
-	const SwalConfig = {
-		title: 'Are you sure?',
-		text: 'Once deleted, you will not be able to recover this information!',
-		icon: 'warning',
-		buttons: true,
-		dangerMode: true,
-	};
 	useEffect(() => {
 		getReservations();
 	}, []);
-
 	async function handleDeleteReservation(id) {
 		swal(SwalConfig).then(async (willDelete) => {
 			if (willDelete) {

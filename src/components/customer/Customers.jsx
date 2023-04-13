@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from './TableCustomers';
+import { Table } from '../TableCustomers';
 
 function Customers() {
 	return (
