@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import AuthUser from '../PrivateRoute/AuthUser';
 import { Link } from 'react-router-dom';
-import { HiOutlineInformationCircle, HiOutlineTrash, HiPencilAlt } from 'react-icons/hi';
+import {
+	HiOutlineInformationCircle,
+	HiOutlineTrash,
+	HiPencilAlt,
+} from 'react-icons/hi';
+import { SwalConfig } from '../swalConfig/beforeDelete';
 export function Table() {
 	const { http, token } = AuthUser();
 	const [cars, setCars] = useState();
@@ -16,15 +21,23 @@ export function Table() {
 		console.log(cars);
 	}
 	async function handleDeleteCar(id) {
-		await http.delete(`cars/${id}`);
-		alert('car deleted Succesfully ');
-        getCars();
+		swal(SwalConfig).then(async (willDelete) => {
+			if (willDelete) {
+				swal('Poof! the car has been deleted!', {
+					icon: 'success',
+				});
+				await http.delete(`cars/${id}`);
+				getCars();
+			} else {
+				swal('Nothing was deleted !');
+			}
+		});
 	}
 	return (
 		<>
 			{!cars ? (
-				<p className='text-sm'>...Loading</p>
-                ) : (
+				<p className="text-sm">...Loading</p>
+			) : (
 				<>
 					<div className="p-5 h-full bg-gray-100">
 						<h1 className="text-xl mb-2">Our Cars</h1>
@@ -99,8 +112,11 @@ export function Table() {
 													{/* <button className="p-2 rounded-lg bg-indigo-500 text-white  border-2 border-indigo-500">
 														<HiOutlineInformationCircle/>
 													</button> */}
-													<Link to={`/car/${car.id}`} className="p-2 rounded-lg bg-indigo-500 text-white  border border-indigo-500 hover:bg-transparent hover:text-indigo-500 ">
-                                                    <HiPencilAlt />
+													<Link
+														to={`/car/${car.id}`}
+														className="p-2 rounded-lg bg-indigo-500 text-white  border border-indigo-500 hover:bg-transparent hover:text-indigo-500 "
+													>
+														<HiPencilAlt />
 													</Link>
 													<button
 														className="p-2 rounded-lg bg-red-500 text-white  border border-red-500 hover:bg-transparent hover:text-red-500"
@@ -116,7 +132,9 @@ export function Table() {
 						</div>
 					</div>
 					<Link to={'/AddCar'} className="ml-3 mt-6 text-white underline">
-						<button className='p-2 text-sm font-medium  ml-2 border border-indigo-500  rounded-lg bg-indigo-500  hover:bg-transparent  hover:text-indigo-500'>Add New Car </button>
+						<button className="p-2 text-sm font-medium  ml-2 border border-indigo-500  rounded-lg bg-indigo-500  hover:bg-transparent  hover:text-indigo-500">
+							Add New Car{' '}
+						</button>
 					</Link>
 				</>
 			)}
