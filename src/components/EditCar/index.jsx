@@ -73,13 +73,13 @@ export function EditCar() {
 	}
 	return (
 		<div className="p-5  flex flex-col justify-center items-center  bg-neutral-100">
-			<form className="w-[45%] text-sm bg-white p-5 space-between rounded-xl ">
+			<form className="w-[45%] text-sm bg-white p-5 space-between rounded-xl flex flex-col gap-4 ">
 				<h2 className="text-center text-base font-bold  text-blue-600">
 					Update a new car
 				</h2>
 				<div className="flex flex-col ">
-					<label htmlFor="name" className=" m-1">
-						name
+					<label htmlFor="name" className="m-1 font-semibold">
+						Name
 					</label>
 					<input
 						type="text"
@@ -91,8 +91,8 @@ export function EditCar() {
 					/>
 				</div>
 				<div className="flex flex-col ">
-					<label htmlFor="dailyPrice" className="m-1">
-						dailyPrice
+					<label htmlFor="dailyPrice" className="m-1 font-semibold">
+						DailyPrice
 					</label>
 					<input
 						type="text"
@@ -104,8 +104,8 @@ export function EditCar() {
 					/>
 				</div>
 				<div className="flex flex-col ">
-					<label htmlFor="monthlyPrice" className="m-1">
-						monthlyPrice
+					<label htmlFor="monthlyPrice" className="m-1 font-semibold">
+						MonthlyPrice
 					</label>
 					<input
 						type="text"
@@ -117,8 +117,8 @@ export function EditCar() {
 					/>
 				</div>
 				<div className="flex flex-col ">
-					<label htmlFor="mileage" className="m-1">
-						mileage
+					<label htmlFor="mileage" className="m-1 font-semibold">
+						Mileage
 					</label>
 					<input
 						type="text"
@@ -130,8 +130,8 @@ export function EditCar() {
 					/>
 				</div>
 				<div className="flex flex-col ">
-					<label htmlFor="gearType" className="m-1">
-						gearType
+					<label htmlFor="gearType" className="m-1 font-semibold">
+						GearType
 					</label>
 					<input
 						type="text"
@@ -143,8 +143,8 @@ export function EditCar() {
 					/>
 				</div>
 				<div className="flex flex-col ">
-					<label htmlFor="gasType" className="m-1">
-						gasType
+					<label htmlFor="gasType" className="m-1 font-semibold">
+						GasType
 					</label>
 					<input
 						type="text"
@@ -156,8 +156,8 @@ export function EditCar() {
 					/>
 				</div>
 				<div className="flex flex-col ">
-					<label htmlFor="description" className="m-1">
-						description
+					<label htmlFor="description" className="m-1 font-semibold">
+						Description
 					</label>
 					<input
 						type="text"
@@ -169,8 +169,8 @@ export function EditCar() {
 					/>
 				</div>
 				<div className="flex flex-col ">
-					<label htmlFor="thumbnailUrl" className="m-1">
-						thumbnailUrl
+					<label htmlFor="thumbnailUrl" className="m-1 font-semibold">
+						ThumbnailUrl
 					</label>
 					<input
 						type="text"

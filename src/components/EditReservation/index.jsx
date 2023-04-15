@@ -38,7 +38,7 @@ export function EditReservation() {
 	};
 	const getUsers = async () => {
 		const apiUsers = await http.get(`/users`);
-		let usersFiltred = apiUsers.data.filter((user) => user.is_admin === 0);
+		let usersFiltred = apiUsers.data.filter((user) => user.is_admin === 0 && user.is_active === 1);
 		setUsers(usersFiltred);
 	};
 	useEffect(() => {
