@@ -10,7 +10,7 @@ function Reservations() {
 	const [reservations, setReservations] = useState();
 	const getReservations = async () => {
 		const urlReservations = await http.get('/reservations');
-		setReservations(urlReservations.data);
+		setReservations(urlReservations.data.reservations);
 	};
 	useEffect(() => {
 		getReservations();

@@ -8,17 +8,18 @@ function RecentOrders() {
 	useEffect(() => {
 		const getReservations = async () => {
 			const urlReservations = await http.get('/reservations');
-			setReservations(urlReservations.data);
+			console.log(urlReservations.data);
+			setReservations(urlReservations.data.reservations);
 		};
 		getReservations();
 	}, []);
 	if (reservations) {
-		console.log(reservations);
+		// console.log(reservations);
 	}
 	return (
 		<div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
 			{!reservations ? (
-				<p>...Loading</p>
+				<p className='text-sm'>...Loading</p>
 			) : (
 				<>
 					<strong className="text-gray-700 font-medium">Recent Orders</strong>
