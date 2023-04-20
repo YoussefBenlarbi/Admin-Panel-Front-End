@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { HiOutlineTrash, HiPencilAlt } from 'react-icons/hi';
 import swal from 'sweetalert';
 import {SwalConfig} from '../swalConfig/beforeDelete'
+import BeatLoaderSpinner from '../reactSpinners/BeatLoaderSpinner';
 export function Table() {
 	const { http, token } = AuthUser();
 	const [users, setUsers] = useState();
@@ -34,7 +35,7 @@ export function Table() {
 	return (
 		<>
 			{!users ? (
-				<p className="text-sm">...Loading</p>
+				< BeatLoaderSpinner height="80vh"/>
 			) : (
 				<>
 					<div className="p-5 h-full bg-gray-100">

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 import AuthUser from './PrivateRoute/AuthUser';
+import BeatLoaderSpinner from './reactSpinners/BeatLoaderSpinner';
 
 // const data = [
 // 	{ name: 'Male', value: 540 },
@@ -79,7 +80,7 @@ export default function BuyerProfileChart() {
 					</div>
 				</>
 			) : (
-				<p className='text-sm'>...loading</p>
+				<BeatLoaderSpinner height="100%" />
 			)}
 		</div>
 	);

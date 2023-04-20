@@ -7,6 +7,7 @@ import {
 	HiPencilAlt,
 } from 'react-icons/hi';
 import { SwalConfig } from '../swalConfig/beforeDelete';
+import BeatLoaderSpinner from '../reactSpinners/BeatLoaderSpinner';
 export function Table() {
 	const { http, token } = AuthUser();
 	const [cars, setCars] = useState();
@@ -36,7 +37,7 @@ export function Table() {
 	return (
 		<>
 			{!cars ? (
-				<p className="text-sm">...Loading</p>
+				<BeatLoaderSpinner height='80vh'/>
 			) : (
 				<>
 					<div className="p-5 h-full bg-gray-100">
