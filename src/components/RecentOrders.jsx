@@ -12,7 +12,7 @@ function RecentOrders() {
 	useEffect(() => {
 		const getReservations = async () => {
 			const urlReservations = await http.get('/reservations');
-			console.log(urlReservations.data);
+			// console.log(urlReservations.data);
 			setReservations(urlReservations.data.reservations);
 		};
 		getReservations();

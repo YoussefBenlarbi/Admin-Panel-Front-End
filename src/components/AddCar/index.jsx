@@ -3,10 +3,12 @@ import { toast } from 'react-toastify';
 import { ToastConfig } from '../toastConfig/success';
 import AuthUser from '../PrivateRoute/AuthUser';
 import { useNavigate } from 'react-router-dom';
-
-export function AddCar() {
-	const { http } = AuthUser();
+import axios from 'axios';
+export  function AddCar() {
+	const {  token } = AuthUser();
 	const navigate = useNavigate();
+
+	const [selectedFile, setSelectedFile] = useState(null);
 	const [state, setState] = useState({
 		name: '',
 		dailyPrice: '',
@@ -15,7 +17,7 @@ export function AddCar() {
 		gearType: '',
 		gasType: '',
 		description: '',
-		thumbnailUrl: '',
+		// thumbnailUrl: '',
 	});
 	const {
 		name,
@@ -25,7 +27,7 @@ export function AddCar() {
 		gearType,
 		gasType,
 		description,
-		thumbnailUrl,
+		// thumbnailUrl,
 	} = state;
 	function handleChange(e) {
 		const { name, value } = e.target;
@@ -33,29 +35,48 @@ export function AddCar() {
 			return { ...prev, [name]: value };
 		});
 	}
-	async function handleSubmit(e) {
-		e.preventDefault();
-		if (
-			!name.trim() ||
-			!dailyPrice.trim() ||
-			!monthlyPrice.trim() ||
-			!mileage.trim() ||
-			!gearType.trim() ||
-			!gasType.trim() ||
-			!description.trim() ||
-			!thumbnailUrl.trim()
-		) {
-			alert('Tous les champs obligatoires ');
-			console.log(state);
-			return;
+	const handleImageChange = (event) => {
+		// Log the selected file object
+		console.log('Selected file:', event.target.files[0]);
+
+		setSelectedFile(event.target.files[0]);
+	};
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+		const formData = new FormData();
+		formData.append('name', name);
+		formData.append('dailyPrice', dailyPrice);
+		formData.append('monthlyPrice', monthlyPrice);
+		formData.append('mileage', mileage);
+		formData.append('gearType', gearType);
+		formData.append('gasType', gasType);
+		formData.append('description', description);
+		if (selectedFile) {
+			const imageName =
+				'image-' + Date.now() + '.' + selectedFile.name.split('.').pop();
+			formData.append('thumbnailUrl', selectedFile, imageName);
 		}
-		await http.post('/cars', state);
-		toast.success('Voiture bien enregistrer !', ToastConfig);
-		navigate('/cars');
-	}
+
+		try {
+			const response = await axios.post(
+				'http://localhost:8000/api/cars',
+				formData,
+				{
+					headers: {
+						'Content-Type': 'multipart/form-data',
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
+			console.log(response.data);
+			navigate('/cars');
+		} catch (error) {
+			console.log(error.response.data);
+		}
+	};
 	return (
 		<div className="p-5  flex flex-col justify-center items-center  bg-neutral-100">
-			<form className="w-[45%] text-sm bg-white p-5 space-between rounded-xl ">
+			<div className="w-[45%] text-sm bg-white p-5 space-between rounded-xl ">
 				<h2 className="text-center text-base font-bold  text-blue-600">
 					Add a new car
 				</h2>
@@ -151,16 +172,16 @@ export function AddCar() {
 					/>
 				</div>
 				<div className="flex flex-col ">
-					<label htmlFor="nathumbnailUrlme" className="m-1">
+					<label htmlFor="thumbnailUrl" className="m-1">
 						thumbnailUrl
 					</label>
 					<input
-						type="text"
+						type="file"
 						id="thumbnailUrl"
 						name="thumbnailUrl"
-						value={thumbnailUrl}
-						onChange={(e) => handleChange(e)}
-						className="p-1  text-gray-700 focus:border-blue-500 focus:outline-none border rounded-lg focus:border-2"
+						// value={thumbnailUrl}
+						onChange={(e) => handleImageChange(e)}
+						className="p-1  text-gray-700  focus:outline-none rounded-lg "
 					/>
 				</div>
 				<div className="text-center p-1 mt-2">
@@ -171,7 +192,7 @@ export function AddCar() {
 						Ajouter voiture
 					</button>
 				</div>
-			</form>
+			</div>
 		</div>
 	);
 }

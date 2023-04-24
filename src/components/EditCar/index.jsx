@@ -64,7 +64,7 @@ export function EditCar() {
 			!thumbnailUrl
 		) {
 			alert('Tous les champs obligatoires ');
-			console.log(state);
+			// console.log(state);
 			return;
 		}
 		await http.patch(`/cars/${id}`, state);

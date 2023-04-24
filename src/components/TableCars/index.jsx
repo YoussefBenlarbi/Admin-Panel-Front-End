@@ -19,7 +19,7 @@ export function Table() {
 		getCars();
 	}, []);
 	if (cars) {
-		console.log(cars);
+		// console.log(cars);
 	}
 	async function handleDeleteCar(id) {
 		swal(SwalConfig).then(async (willDelete) => {

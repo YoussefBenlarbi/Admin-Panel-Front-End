@@ -80,7 +80,7 @@ export default function TransactionChart() {
 	const [data, setData] = useState();
 	const getSexeStat = async () => {
 		const urlSexe = await http.get('/reservations');
-		console.log(urlSexe.data.arraySexe);
+		// console.log(urlSexe.data.arraySexe);
 		setData(urlSexe.data.dataChart);
 	};
 	useEffect(() => {

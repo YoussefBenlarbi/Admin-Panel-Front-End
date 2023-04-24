@@ -21,7 +21,7 @@ function Login() {
 			const response = await http.post('/login', { email, password });
 			// do something with response data
 			setToken(response.data.user, response.data.authorization.token);
-			console.log(response.data);
+			// console.log(response.data);
 			setLoading(false);
 			setUser(response.data.user);
 			setMessage('succes');

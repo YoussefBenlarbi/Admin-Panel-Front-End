@@ -11,6 +11,7 @@ import Cars from './components/Cars';
 import { PrivateRoute } from './components/PrivateRoute';
 import { EditCar } from './components/EditCar';
 import { AddCar } from './components/AddCar';
+// import AddCar from './components/AddCar';
 import { EditReservation } from './components/EditReservation';
 import UpdateCustomer from './components/customer/UpdateCustomer';
 import { ToastContainer } from 'react-toastify';
