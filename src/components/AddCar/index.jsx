@@ -4,8 +4,8 @@ import { ToastConfig } from '../toastConfig/success';
 import AuthUser from '../PrivateRoute/AuthUser';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-export  function AddCar() {
-	const {  token } = AuthUser();
+export function AddCar() {
+	const { token } = AuthUser();
 	const navigate = useNavigate();
 
 	const [selectedFile, setSelectedFile] = useState(null);
@@ -69,6 +69,8 @@ export  function AddCar() {
 				}
 			);
 			console.log(response.data);
+			toast.success('Voiture bien enregistrer !', ToastConfig);
+
 			navigate('/cars');
 		} catch (error) {
 			console.log(error.response.data);

@@ -7,11 +7,24 @@ import axios from 'axios';
 
 export function EditCar() {
 	const { id } = useParams();
-
 	const { http, token } = AuthUser();
 	const navigate = useNavigate();
 	const [selectedFile, setSelectedFile] = useState(null);
 
+	// const [car, setCar] = useState();
+	const getCar = async () => {
+		const apiCars = await http.get(`/cars/${id}`);
+		setState({
+			name: apiCars.data.name || '',
+			dailyPrice: apiCars.data.dailyPrice || '',
+			monthlyPrice: apiCars.data.monthlyPrice || '',
+			mileage: apiCars.data.mileage || '',
+			gearType: apiCars.data.gearType || '',
+			gasType: apiCars.data.gasType || '',
+			description: apiCars.data.description || '',
+			// thumbnailUrl: apiCars.data.thumbnailUrl || '',
+		});
+	};
 	const [state, setState] = useState({
 		name: '',
 		dailyPrice: '',
@@ -32,25 +45,9 @@ export function EditCar() {
 		description,
 		// thumbnailUrl,
 	} = state;
-	// const [car, setCar] = useState();
-	const getCar = async () => {
-		const apiCars = await http.get(`/cars/${id}`);
-		setState({
-			name: apiCars.data.name || '',
-			dailyPrice: apiCars.data.dailyPrice || '',
-			monthlyPrice: apiCars.data.monthlyPrice || '',
-			mileage: apiCars.data.mileage || '',
-			gearType: apiCars.data.gearType || '',
-			gasType: apiCars.data.gasType || '',
-			description: apiCars.data.description || '',
-			// thumbnailUrl: apiCars.data.thumbnailUrl || '',
-		});
-	};
-
 	useEffect(() => {
 		getCar();
 	}, []);
-
 	function handleChange(e) {
 		const { name, value } = e.target;
 		setState((prev) => {
@@ -60,8 +57,10 @@ export function EditCar() {
 	const handleImageChange = (event) => {
 		// Log the selected file object
 		console.log('Selected file:', event.target.files[0]);
+
 		setSelectedFile(event.target.files[0]);
 	};
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const formData = new FormData();
@@ -72,43 +71,36 @@ export function EditCar() {
 		formData.append('gearType', gearType);
 		formData.append('gasType', gasType);
 		formData.append('description', description);
-		
 		if (selectedFile) {
 			const imageName =
 				'image-' + Date.now() + '.' + selectedFile.name.split('.').pop();
 			formData.append('thumbnailUrl', selectedFile, imageName);
 		}
-		formData.append('_method', 'PATCH');
+
 		try {
-			// console.log(response.data);
-			// toast.success('Voiture bien enregistrer !', ToastConfig);
-			// navigate('/cars');
-			for (let [key, value] of formData.entries()) {
-				console.log(key, value);
-			}
-			const response = await axios.post(
+			const response = await axios.put(
 				`http://localhost:8000/api/cars/${id}`,
 				formData,
 				{
 					headers: {
 						'Content-Type': 'multipart/form-data',
-						'Accept': 'application/json',
 						'Authorization': `Bearer ${token}`,
 					},
 				}
 			);
-			toast.success('Voiture bien modifier !', ToastConfig);
+			console.log(response.data);
+			toast.success('Voiture bien enregistrer !', ToastConfig);
+
 			navigate('/cars');
 		} catch (error) {
 			console.log(error.response.data);
-			// console.log(error);
 		}
 	};
 	return (
 		<div className="p-5  flex flex-col justify-center items-center  bg-neutral-100">
-			<div className="w-[45%] text-sm bg-white p-5 space-between rounded-xl">
+			<div className="w-[45%] text-sm bg-white p-5 space-between rounded-xl ">
 				<h2 className="text-center text-base font-bold  text-blue-600">
-					Update a new car 2
+					Add a new car
 				</h2>
 				<div className="flex flex-col ">
 					<label htmlFor="name" className=" m-1">
@@ -219,7 +211,7 @@ export function EditCar() {
 						onClick={(e) => handleSubmit(e)}
 						className="p-2 rounded-lg font-semibold border-indigo-600 bg-indigo-600 text-white border hover:bg-transparent hover:text-indigo-600 text-sm"
 					>
-						Update voiture
+						Ajouter voiture
 					</button>
 				</div>
 			</div>
