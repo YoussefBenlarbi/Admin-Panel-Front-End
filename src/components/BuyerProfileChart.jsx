@@ -49,11 +49,11 @@ export default function BuyerProfileChart() {
 		getSexeStat();
 	}, []);
 	return (
-		<div className="w-[20rem] h-[22rem] bg-white p-4 rounded-sm border border-gray-200 flex flex-col">
+		<div className="w-[16rem] h-[22rem]  bg-white p-4 rounded-sm border border-gray-200 flex flex-col">
 			{data ? (
 				<>
 					<strong className="text-gray-700 font-medium">Buyer Profile</strong>
-					<div className="mt-3 w-full flex-1 text-xs">
+					<div className="mt-3 w-full flex-1 text-xs " >
 						<ResponsiveContainer width="100%" height="100%">
 							<PieChart width={400} height={300}>
 								<Pie

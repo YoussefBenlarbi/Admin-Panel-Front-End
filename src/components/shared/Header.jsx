@@ -9,6 +9,7 @@ import { Fragment } from 'react';
 import classNames from 'classnames';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthUser from '../PrivateRoute/AuthUser';
+import profilPictureMale from '../../assets/adminMale2.png';
 export default function Header() {
 	const navigate = useNavigate();
 	const { token, logout } = AuthUser();
@@ -20,8 +21,8 @@ export default function Header() {
 	};
 
 	return (
-		<div className="bg-white h-16 px-4 p-2  flex justify-between items-center border-b border-gray-200">
-			<div className="relative">
+		<div className="bg-white h-16 px-4 p-2  flex justify-end  items-center border-b border-gray-200 pr-8">
+			{/* <div className="relative">
 				<HiOutlineSearch
 					fontSize={20}
 					className="text-gray-400 left-3 absolute top-1/2 -translate-y-1/2"
@@ -31,7 +32,7 @@ export default function Header() {
 					placeholder="Search..."
 					className="text-sm pl-11 focus:outline-none active:outline-none h-10 w-[24rem] border border-gray-300 rounded-sm px-4 "
 				/>
-			</div>
+			</div> */}
 			<div className="flex flex-row items-center gap-2 mr-2 ">
 				<Popover className="relative">
 					{({ open }) => (
@@ -101,14 +102,11 @@ export default function Header() {
 					<div className="">
 						<Menu.Button className="ml-2 inline-flex rounded-full focus:outline-none focus:ring-2 focus:ring-neutral-400">
 							<span className="sr-only">Open user Menu</span>
-							<div
-								className="h-8 w-8  rounded-full bg-sky-500 bg-cover bg-no-repeat bg-center"
-								style={{
-									backgroundImage: `url("https://source.unsplash.com/80x80?face")`,
-								}}
-							>
-								<span className="sr-only">John Doe</span>
-							</div>
+							<img
+								src={profilPictureMale}
+								alt="profil"
+								className="h-8 w-8  rounded-full bg-sky-500 object-cover bg-cover bg-no-repeat"
+							/>
 						</Menu.Button>
 					</div>
 					<Transition

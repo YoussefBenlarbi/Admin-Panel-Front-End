@@ -109,9 +109,7 @@ export function Table() {
 							</table>
 						</div>
 					</div>
-					<Link to={'/'} className="ml-3 mt-6 text-red-500 underline">
-						go to Dashboard page{' '}
-					</Link>
+					
 				</>
 			)}
 		</>

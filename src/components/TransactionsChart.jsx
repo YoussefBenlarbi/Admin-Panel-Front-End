@@ -87,11 +87,11 @@ export default function TransactionChart() {
 		getSexeStat();
 	}, []);
 	return (
-		<div className="h-[22rem] bg-white p-4 rounded-sm border border-gray-200 flex flex-col flex-1">
+		<div className="h-[22rem]  bg-white p-4 rounded-sm border border-gray-200 flex flex-col flex-1">
 			{data ? (
 				<>
-					<strong className="text-gray-700 font-medium">Transactions</strong>
-					<div className="mt-3 w-full flex-1 text-xs">
+					<strong className="text-gray-700 font-medium">Reservations</strong>
+					<div className="mt-3 w-full flex-1 text-xs ">
 						<ResponsiveContainer width="100%" height="100%">
 							<BarChart
 								width={500}
@@ -100,7 +100,7 @@ export default function TransactionChart() {
 								margin={{
 									top: 20,
 									right: 10,
-									left: -10,
+									left: 0,
 									bottom: 0,
 								}}
 							>
