@@ -99,8 +99,8 @@ export default function TransactionChart() {
 								data={data}
 								margin={{
 									top: 20,
-									right: 10,
-									left: 0,
+									right: 0,
+									left:0,
 									bottom: 0,
 								}}
 							>

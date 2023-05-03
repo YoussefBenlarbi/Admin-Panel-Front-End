@@ -14,7 +14,7 @@ function DashboardStatsGrid() {
 		setData(urlRequest.data);
 		setNumberUsers(urlRequest.data.users.length);
 		setCountReservation(urlRequest.data.reservations.length);
-		const saleso = urlRequest.data.reservations.reduce(
+		const saleso = urlRequest.data.reservations.filter((elm)=>(elm.status==="2")).reduce(
 			(acc, cur) => (acc += cur.total),
 			0
 		);
