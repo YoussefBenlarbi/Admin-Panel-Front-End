@@ -40,7 +40,7 @@ function Reservations() {
 				<div className="p-3 h-[90%]  bg-gray-100">
 					{' '}
 					<h1 className="text-xl mb-2">Our Reservations</h1>
-					<table className="w-full  rounded-lg mb-7 shadow overflow-auto p-5  bg-gray-100 ">
+					<table className="w-full  rounded-lg mb-3 shadow overflow-auto p-5  bg-gray-100 ">
 						<thead className="bg-gray-50 border-b-2 border-gray-200">
 							<tr>
 								<th className="w-20 p-3 text-sm font-semibold tracking-wide text-left">
@@ -122,9 +122,9 @@ function Reservations() {
 						currentPage={{ get: currentPage.get, set: currentPage.set }}
 						offset={1}
 						classNames={{
-							wrapper: 'flex m-auto justify-center  select-none rounded-md ',
+							wrapper: 'flex m-auto justify-center  select-none rounded-md',
 							item: 'p-1 w-7 flex justify-center bg-white items-center border-2 m-1 text-sm hover:cursor-pointer hover:bg-blue-700 hover:text-white rounded-md',
-							itemActive: 'bg-sky-800 text-white',
+							itemActive: 'bg-blue-700 text-white',
 							navPrev:
 								'p-1 w-7 flex bg-white justify-center items-center border-2 m-1 text-sm hover:cursor-pointer hover:bg-blue-700 hover:text-white rounded-md',
 							navNext:

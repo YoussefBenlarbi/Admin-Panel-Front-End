@@ -23,12 +23,12 @@ function RecentOrders() {
 	return (
 		<div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
 			{!reservations ? (
-				<BeatLoaderSpinner height='100%' />
+				<BeatLoaderSpinner height="100%" />
 			) : (
 				<>
 					<strong className="text-gray-700 font-medium">Recent Orders</strong>
 					<div className="mt-3">
-						<table className="w-full text-gray-700 border-x border-gray-200 rounded-sm">
+						<table className="w-full text-gray-700 border-x mb-3 border-gray-200 rounded-sm">
 							<thead>
 								<tr>
 									<td>id</td>
@@ -77,9 +77,9 @@ function RecentOrders() {
 							currentPage={{ get: currentPage.get, set: currentPage.set }}
 							offset={1}
 							classNames={{
-								wrapper: 'flex m-auto justify-center  select-none rounded-md ',
+								wrapper: 'flex m-auto justify-center  select-none rounded-md  ',
 								item: 'p-1 w-7 flex justify-center bg-white items-center border-2 m-1 text-sm hover:cursor-pointer hover:bg-blue-700 hover:text-white rounded-md',
-								itemActive: 'bg-sky-800 text-white',
+								itemActive: 'bg-blue-700 text-white',
 								navPrev:
 									'p-1 w-7 flex bg-white justify-center items-center border-2 m-1 text-sm hover:cursor-pointer hover:bg-blue-700 hover:text-white rounded-md',
 								navNext:
