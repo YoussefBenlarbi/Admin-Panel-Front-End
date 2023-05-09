@@ -1,8 +1,45 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { Link, useLocation } from 'react-router-dom';
-import AuthUser from './PrivateRoute/AuthUser';
+import AdminPicture from '../assets/adminMale0.png';
 import { AlertError } from './AlertError';
+import AuthUser from './PrivateRoute/AuthUser';
+import { SCREENS } from './responsive';
+
+const StandaloneCar = styled.div`
+	width: 50%;
+	height: 10em;
+	right: 0em;
+	top: 0em;
+	position: absolute;
+	user-select: none;
+	img {
+		width: auto;
+		height: 100%;
+		max-width: fit-content;
+	}
+
+	@media (min-width: ${SCREENS.sm}) {
+		height: 24em;
+		right: 0em;
+		left: 0em;
+		top: 5em;
+	}
+
+	@media (min-width: ${SCREENS.lg}) {
+		height: 28em;
+		right: 0em;
+		left: 3em;
+		top: 5em;
+	}
+
+	@media (min-width: ${SCREENS.xl}) {
+		height: 30em;
+		right: 0em;
+		left: 4em;
+		top: 5em;
+	}
+`;
 function Login() {
 	const [loading, setLoading] = useState(false);
 	const { http, setToken } = AuthUser();
@@ -32,77 +69,56 @@ function Login() {
 		}
 	};
 	return (
-		<div className="w-full h-screen flex justify-center items-center">
-			{' '}
-			<div className="h-full w-1/2 bg-login-pic"></div>
-			<div className="w-1/2 flex justify-center items-center  bg-gray-100 h-full">
-				<form className="bg-white w-3/4 shadow-md rounded px-8 pt-6 pb-8 ">
-					<div className="mb-4">
-						<h1 className="text-center text-cyan-600 tracking-widest text-3xl font-bold">
-							Log in{' '}
-						</h1>
-						<label
-							className="block text-gray-700 text-sm  mb-2"
-							htmlFor="email"
-						>
-							Email
-						</label>
-						<input
-							className="shadow appearance-none border focus:border-2 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-cyan-700"
-							id="email"
-							type="text"
-							placeholder="email"
-							onChange={(e) => setEmail(e.target.value)}
-						/>
-					</div>
-					<div className="mb-6">
-						<label
-							className="block text-gray-700 text-sm  mb-2"
-							htmlFor="password"
-						>
-							Password
-						</label>
-						<input
-							className="shadow appearance-none border focus:border-2   rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-cyan-700"
-							id="password"
-							type="password"
-							placeholder="*********************"
-							onChange={(e) => setPassword(e.target.value)}
-						/>
-						{/* <p className="text-red-500 text-xs italic">Please choose a password.</p> */}
-					</div>
-					<div className="flex items-center justify-between">
-						<button
-							className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-							type="submit"
-							onClick={handleLogin}
-							disabled={loading}
-						>
-							{loading ? 'Loading...' : 'Sign in '}
-						</button>
-						<a
-							className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-							href="#"
-						>
-							Forgot Password?
-						</a>
-					</div>
-					<p className="text-center mt-5 text-gray-500 text-xs">
-						&copy;2020 Acme Corp. All rights reserved.
-					</p>
-					<span>
-						{message && <p className="text-red-600">{message}</p>}
-						{user && (
-							<p className="font-mono">
-								Hello Mr <span className="font-bold">{user.name}</span>
-							</p>
-						)}
-						{error && <p className="error">{error}</p>}
-						{feedback && <AlertError feedback={feedback} />}
-					</span>
-				</form>
+		<form className="w-full h-screen flex " onSubmit={handleLogin}>
+			<div className="	hidden md:w-[50%] bg-gray-100  md:flex  md:justify-center  md:items-center shadow">
+				<StandaloneCar>
+					<img src={AdminPicture} alt="" />
+				</StandaloneCar>
 			</div>
-		</div>
+			<div className="w-full h-full md:w-[50%] flex flex-col  items-center md:justify-center mt-28 md:mt-0">
+				<h2 className="text-4xl mb-4">Car Agency</h2>
+				<small className="mb-4 text-gray-500 text-semibold text-meduim">
+					Admin Panel
+				</small>
+				<div className="mb-4 w-[60%]">
+					<input
+						placeholder="Email"
+						id="email"
+						type="text"
+						className="p-2 text-gray-500 border rounded w-full focus:border-blue-500 outline-none shadow	"
+						onChange={(e) => setEmail(e.target.value)}
+					/>{' '}
+				</div>
+				<div className="mb-4 w-[60%]">
+					<input
+						id="password"
+						type="password"
+						className="p-2 text-gray-500 border rounded w-full focus:border-blue-500 outline-none shadow	"
+						placeholder="*********************"
+						onChange={(e) => setPassword(e.target.value)}
+					/>
+				</div>
+				<button
+					type="submit"
+					disabled={loading}
+					className="	p-2 border rounded mb-4 w-[60%] bg-gray-800 hover:bg-gray-700  text-white hover:cursor-pointer font-mono 	`};
+                "
+				>
+					{loading ? 'Loading...' : 'Connexion'}
+				</button>
+
+				<span className="w-[60%]">
+					{/* {message && <p className="text-red-600">{message}</p>}
+					{user && (
+						<p className="font-mono">
+							Hello Mr <span className="font-bold">{user.name}</span>
+						</p>
+					)} */}
+					{error && <p className="error">{error}</p>}
+					{feedback && <AlertError feedback={feedback} />}
+				</span>
+			</div>
+		</form>
 	);
 }
 

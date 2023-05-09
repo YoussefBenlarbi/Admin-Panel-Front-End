@@ -4,7 +4,7 @@ import { SwitchToggle } from '../SwitchToggle';
 import { Link } from 'react-router-dom';
 import { HiOutlineTrash, HiPencilAlt } from 'react-icons/hi';
 import swal from 'sweetalert';
-import {SwalConfig} from '../swalConfig/beforeDelete'
+import { SwalConfig } from '../swalConfig/beforeDelete';
 import BeatLoaderSpinner from '../reactSpinners/BeatLoaderSpinner';
 export function Table() {
 	const { http, token } = AuthUser();
@@ -35,7 +35,7 @@ export function Table() {
 	return (
 		<>
 			{!users ? (
-				< BeatLoaderSpinner height="80vh"/>
+				<BeatLoaderSpinner height="80vh" />
 			) : (
 				<>
 					<div className="p-5 h-full bg-gray-100">
@@ -108,8 +108,12 @@ export function Table() {
 								</tbody>
 							</table>
 						</div>
+						<Link to={'/add-customer'} className="ml-3 mt-6 text-white ">
+							<button className="p-2 text-sm font-medium  ml-2 mt-2 border border-indigo-500  rounded-lg bg-indigo-500  hover:bg-transparent  hover:text-indigo-500">
+								Add New Customer{' '}
+							</button>
+						</Link>
 					</div>
-					
 				</>
 			)}
 		</>
