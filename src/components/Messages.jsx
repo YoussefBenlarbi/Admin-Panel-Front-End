@@ -22,7 +22,10 @@ export default function Messages() {
 				<BeatLoaderSpinner height="80vh" />
 			) : (
 				<>
-					<div className="grid grid-cols-3 gap-4">
+					<div className="col-span-12 ">
+                    <h1 className="text-xl ml-3 ">Messages List </h1>
+                    </div>
+					<div className="grid grid-cols-3 gap-4 mt-6">
 						{messages &&
 							messages
 								.slice(entries.indexOfFirst, entries.indexOfLast)

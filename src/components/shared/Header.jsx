@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	HiOutlineBell,
 	HiOutlineChatAlt,
@@ -12,8 +12,16 @@ import AuthUser from '../PrivateRoute/AuthUser';
 import profilPictureMale from '../../assets/adminMale2.png';
 export default function Header() {
 	const navigate = useNavigate();
-	const { token, logout } = AuthUser();
+	const { http, token, logout } = AuthUser();
+	const [messages, setmessages] = useState();
 
+	const getmessages = async () => {
+		const urlmessages = await http.get('/messages');
+		setmessages(urlmessages.data);
+	};
+	useEffect(() => {
+		getmessages();
+	}, []);
 	const logoutAdmin = () => {
 		if (token != undefined) {
 			logout();
@@ -59,17 +67,32 @@ export default function Header() {
 										<strong className="text-gray-700 font-medium">
 											Messages
 										</strong>
-										<div className="mt-2 py-1 text-sm">messages panel</div>
+										{messages &&
+											messages.slice(0, 3).map((message) => (
+												<div className="mt-2 p-1 flex flex-col  border border-gray-100 shadow text-sm">
+													<h5 className="  underline font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+														{message.name}
+													</h5>
+													<p className="text-xs font-medium py-1 leading-tight  dark:text-neutral-50">
+														{message.message}
+													</p>
+												</div>
+											))}
+										<Link to='messages' className='hover:no-underline'>
+											<div className="w-full p-1 text-xs mt-2 hover:cursor-pointer text-neutral-700 flex justify-center items-center">
+												Show more...
+											</div>
+										</Link>
 									</div>
 								</Popover.Panel>
 							</Transition>
 						</>
 					)}
 				</Popover>
-				<Popover className="relative">
-					{({ open }) => (
-						<>
-							<Popover.Button
+				{/* <Popover className="relative"> */}
+					{/* {({ open }) => ( */}
+						{/* // <> */}
+							{/* <Popover.Button
 								className={classNames(
 									open && 'bg-gray-100',
 									'inline-flex items-center text-gray-700 hover:text-opacity-100 focus:outline-none active:bg-gray-100 p-1.5 rounded-sm '
@@ -94,10 +117,10 @@ export default function Header() {
 										<div className="mt-2 py-1 text-sm">messages panel</div>
 									</div>
 								</Popover.Panel>
-							</Transition>
-						</>
-					)}
-				</Popover>
+							</Transition> */}
+						{/* </> */}
+					{/* )} */}
+				{/* </Popover> */}
 				<Menu as="div" className="relative inline-block text-left mr-4 p-2">
 					<div className="">
 						<Menu.Button className="ml-2 inline-flex rounded-full focus:outline-none focus:ring-2 focus:ring-neutral-400">
