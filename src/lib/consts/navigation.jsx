@@ -42,6 +42,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		path: '/reservations',
 		icon: <HiOutlineDocumentText />,
 	},
+	{
+		key: 'messages',
+		label: 'Messages',
+		path: '/messages',
+		icon: <HiOutlineAnnotation />,
+	},
 	// {
 	// 	key: 'messages',
 	// 	label: 'Messages',

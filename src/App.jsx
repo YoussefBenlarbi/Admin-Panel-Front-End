@@ -18,6 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { EditReservation } from './components/EditReservation';
 import UpdateCustomer from './components/customer/UpdateCustomer';
 import AddCustomer from './components/customer/AddCustomer';
+import Messages from './components/Messages';
 
 function App() {
 	return (
@@ -37,6 +38,7 @@ function App() {
 						<Route path="car/:id" element={<EditCar />} />
 						<Route path="reservation/:id" element={<EditReservation />} />
 						<Route path="AddCar" element={<AddCar />} />
+						<Route path="messages" element={<Messages />} />
 					</Route>
 				</Route>
 				<Route>

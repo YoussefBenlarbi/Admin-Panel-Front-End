@@ -123,20 +123,20 @@ function Reservations() {
 						offset={1}
 						classNames={{
 							wrapper: 'flex m-auto justify-center  select-none rounded-md',
-							item: 'p-1 w-7 flex justify-center bg-white items-center border-2 m-1 text-sm hover:cursor-pointer hover:bg-blue-700 hover:text-white rounded-md',
-							itemActive: 'bg-blue-700 text-white',
+							item: 'p-1 w-7 flex justify-center bg-white items-center border-2 m-1 text-sm hover:cursor-pointer hover:bg-sky-700 hover:text-white rounded-md',
+							itemActive: 'p-1 w-7 flex bg-sky-700 text-white justify-center items-center border-2 m-1 text-sm  rounded-md',
 							navPrev:
-								'p-1 w-7 flex bg-white justify-center items-center border-2 m-1 text-sm hover:cursor-pointer hover:bg-blue-700 hover:text-white rounded-md',
+								'p-1 w-7 flex bg-white justify-center items-center border-2 m-1 text-sm hover:cursor-pointer hover:bg-sky-700 hover:text-white rounded-md',
 							navNext:
-								'p-1 w-7 flex bg-white justify-center items-center border-2 m-1 text-sm hover:cursor-pointer hover:bg-blue-700 hover:text-white rounded-md',
+								'p-1 w-7 flex bg-white justify-center items-center border-2 m-1 text-sm hover:cursor-pointer hover:bg-sky-700 hover:text-white rounded-md',
 							navStart:
-								'p-1 w-7 hidden flex justify-center items-center border-2 m-1 text-sm hover:cursor-pointer hover:bg-blue-700 hover:text-white rounded-md',
+								'p-1 w-7 hidden flex justify-center items-center border-2 m-1 text-sm hover:cursor-pointer hover:bg-sky-700 hover:text-white rounded-md',
 							navEnd:
-								'p-1 w-7 flex  hidden justify-center items-center border-2 m-1 text-sm hover:cursor-pointer hover:bg-blue-700 hover:text-white rounded-md',
+								'p-1 w-7 flex  hidden justify-center items-center border-2 m-1 text-sm hover:cursor-pointer hover:bg-sky-700 hover:text-white rounded-md',
 							navPrevCustom:
-								'p-1 border-2  m-1 flex justify-center items-center rounded-md hover:cursor-pointer hover:bg-blue-700 hover:text-white',
+								'p-1 border-2  m-1 flex justify-center items-center rounded-md hover:cursor-pointer hover:bg-sky-700 hover:text-white',
 							navNextCustom:
-								'p-1 border-2 m-1  flex justify-center items-center rounded-md hover:cursor-pointer hover:bg-blue-700 hover:text-white',
+								'p-1 border-2 m-1  flex justify-center items-center rounded-md hover:cursor-pointer hover:bg-sky-700 hover:text-white',
 						}}
 						showFirstNumberAlways={true}
 						showLastNumberAlways={true}
