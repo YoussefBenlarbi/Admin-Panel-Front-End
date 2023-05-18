@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import AdminPicture from '../assets/adminMale0.png';
+import { toast } from 'react-toastify';
+import { ToastConfig } from './toastConfig/success';
 import { AlertError } from './AlertError';
 import AuthUser from './PrivateRoute/AuthUser';
 import { SCREENS } from './responsive';
@@ -45,27 +47,25 @@ function Login() {
 	const { http, setToken } = AuthUser();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [message, setMessage] = useState('');
 	const [user, setUser] = useState();
-	const [error, setError] = useState();
 	const location = useLocation();
 	const { feedback } = location.state || {};
 	const handleLogin = async (e) => {
 		e.preventDefault();
-		setLoading(true);
-		setError(null);
-		try {
-			const response = await http.post('/login', { email, password });
-			// do something with response data
-			setToken(response.data.user, response.data.authorization.token);
-			// console.log(response.data);
-			setLoading(false);
-			setUser(response.data.user);
-			setMessage('succes');
-		} catch (err) {
-			// handle error
-			setError(err.message || 'Something went wrong');
-			setLoading(false);
+		if (!email.trim('') || !password.trim('')) {
+			toast.error('Tous les champs sont oblipgatoires!', ToastConfig);
+		} else {
+			setLoading(true);
+			try {
+				const response = await http.post('/login', { email, password });
+				// do something with response data
+				setToken(response.data.user, response.data.authorization.token);
+				setLoading(false);
+				setUser(response.data.user);
+			} catch (err) {
+				// handle error
+				setLoading(false);
+			}
 		}
 	};
 	return (
@@ -84,7 +84,8 @@ function Login() {
 					<input
 						placeholder="Email"
 						id="email"
-						type="text"
+						required
+						type="email"
 						className="p-2 text-gray-500 border rounded w-full focus:border-blue-500 outline-none shadow	"
 						onChange={(e) => setEmail(e.target.value)}
 					/>{' '}
@@ -108,13 +109,6 @@ function Login() {
 				</button>
 
 				<span className="w-[60%]">
-					{/* {message && <p className="text-red-600">{message}</p>}
-					{user && (
-						<p className="font-mono">
-							Hello Mr <span className="font-bold">{user.name}</span>
-						</p>
-					)} */}
-					{error && <p className="error">{error}</p>}
 					{feedback && <AlertError feedback={feedback} />}
 				</span>
 			</div>

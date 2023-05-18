@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import AuthUser from '../PrivateRoute/AuthUser';
+import { toast } from 'react-toastify';
+import { ToastConfig } from '../toastConfig/success';
 export default function AddCustomer() {
 	const { http, setToken } = AuthUser();
 	const navigate = useNavigate();
@@ -28,17 +30,32 @@ export default function AddCustomer() {
 	}
 	const submitForm = (e) => {
 		e.preventDefault();
-		//  api call
-		if (password != confirmPassword) {
-			toast.error('passwords are not identical', configToast);
+		if (!name.trim('') || !email.trim('') || !cin.trim('') || !password.trim('') || !confirmPassword.trim('') || !address.trim('') || sexe.trim('') === "rien") {
+			toast.error('Tous les champs sont obligatoires!');
 		} else {
-			console.log(state);
-			http.post('/register', state).then((res) => {
-				console.log(res);
-				// navigate(`/login`);
-			});
-			// alert('pressed');
+			//  api call
+			if (password != confirmPassword) {
+				toast.error('passwords are not identical', ToastConfig);
+			} else {
+				console.log(state);
+				http.post('/register', state).then((res) => {
+					console.log(res);
+					toast.success('the account was created succesfully ', ToastConfig);
+					navigate(`/customers`);
+				});
+			}
 		}
+		// //  api call
+		// if (password != confirmPassword) {
+		// 	toast.error('passwords are not identical', configToast);
+		// } else {
+		// 	console.log(state);
+		// 	http.post('/register', state).then((res) => {
+		// 		console.log(res);
+		// 		// navigate(`/login`);
+		// 	});
+		// 	// alert('pressed');
+		// }
 	};
 	return (
 		<div className="flex justify-center items-center">
@@ -57,6 +74,7 @@ export default function AddCustomer() {
 						type="text"
 						id="name"
 						name="name"
+						required
 						placeholder="name"
 						value={name}
 						onChange={(e) => handleChange(e)}
@@ -70,6 +88,7 @@ export default function AddCustomer() {
 					<input
 						type="email"
 						id="email"
+						required
 						placeholder="email"
 						value={email}
 						name="email"
@@ -86,6 +105,7 @@ export default function AddCustomer() {
 						id="password"
 						name="password"
 						type="password"
+						required
 						value={password}
 						className="p-1 border text-sm rounded-md focus:border-2 focus:border-blue-500 focus:outline-none "
 						onChange={(e) => handleChange(e)}
@@ -98,6 +118,7 @@ export default function AddCustomer() {
 					<input
 						type="password"
 						name="confirmPassword"
+						required
 						value={confirmPassword}
 						onChange={(e) => handleChange(e)}
 						placeholder="*********************"
@@ -112,6 +133,7 @@ export default function AddCustomer() {
 						type="text"
 						id="cin"
 						name="cin"
+						required
 						placeholder="cin"
 						value={cin}
 						onChange={(e) => handleChange(e)}
@@ -126,6 +148,7 @@ export default function AddCustomer() {
 						type="text"
 						id="address"
 						name="address"
+						required
 						placeholder="address"
 						value={address}
 						onChange={(e) => handleChange(e)}

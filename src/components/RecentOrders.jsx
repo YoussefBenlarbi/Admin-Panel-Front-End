@@ -47,10 +47,10 @@ function RecentOrders() {
 									.map((order) => (
 										<tr key={order.id}>
 											<td>
-												<Link to={`/order/${order.id}`}>#{order.id}</Link>
+												<Link to={`/reservation/${order.id}`}>#{order.id}</Link>
 											</td>
 											<td>
-												<Link to={`/customer/${order.user_id}`}>
+												<Link to={`/edit-customer/${order.user_id}`}>
 													{order.user.name}
 												</Link>
 											</td>

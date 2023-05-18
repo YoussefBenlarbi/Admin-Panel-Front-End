@@ -108,7 +108,7 @@ export function EditCar() {
 		<div className="p-5  flex flex-col justify-center items-center  bg-neutral-100">
 			<div className="w-[45%] text-sm bg-white p-5 space-between rounded-xl">
 				<h2 className="text-center text-base font-bold  text-blue-600">
-					Update a new car 2
+					Update Car Informations : 
 				</h2>
 				<div className="flex flex-col ">
 					<label htmlFor="name" className=" m-1">
