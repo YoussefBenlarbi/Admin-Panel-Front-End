@@ -124,7 +124,7 @@ function Reservations() {
 						classNames={{
 							wrapper: 'flex m-auto justify-center  select-none rounded-md',
 							item: 'p-1 w-7 flex justify-center bg-white items-center border-2 m-1 text-sm hover:cursor-pointer hover:bg-sky-700 hover:text-white rounded-md',
-							itemActive: 'p-1 w-7 flex bg-sky-700 text-white justify-center items-center border-2 m-1 text-sm  rounded-md',
+							itemActive: 'p-1 w-7 flex text-sky-700  justify-center items-center border-2 m-1 text-sm  rounded-md',
 							navPrev:
 								'p-1 w-7 flex bg-white justify-center items-center border-2 m-1 text-sm hover:cursor-pointer hover:bg-sky-700 hover:text-white rounded-md',
 							navNext:
