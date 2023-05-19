@@ -65,6 +65,8 @@ function Login() {
 			} catch (err) {
 				// handle error
 				setLoading(false);
+				toast.error('Veuiller saisir email et password correct', ToastConfig);
+
 			}
 		}
 	};

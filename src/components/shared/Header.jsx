@@ -78,11 +78,13 @@ export default function Header() {
 													</p>
 												</div>
 											))}
-										<Link to='messages' className='hover:no-underline'>
-											<div className="w-full p-1 text-xs mt-2 hover:cursor-pointer text-neutral-700 flex justify-center items-center">
-												Show more...
-											</div>
-										</Link>
+										
+											<Link to="messages" className="hover:no-underline">
+												<div className="w-full p-1 text-xs mt-2 hover:cursor-pointer text-neutral-700 flex justify-center items-center">
+													Show more...
+												</div>
+											</Link>
+										
 									</div>
 								</Popover.Panel>
 							</Transition>
@@ -90,9 +92,9 @@ export default function Header() {
 					)}
 				</Popover>
 				{/* <Popover className="relative"> */}
-					{/* {({ open }) => ( */}
-						{/* // <> */}
-							{/* <Popover.Button
+				{/* {({ open }) => ( */}
+				{/* // <> */}
+				{/* <Popover.Button
 								className={classNames(
 									open && 'bg-gray-100',
 									'inline-flex items-center text-gray-700 hover:text-opacity-100 focus:outline-none active:bg-gray-100 p-1.5 rounded-sm '
@@ -118,8 +120,8 @@ export default function Header() {
 									</div>
 								</Popover.Panel>
 							</Transition> */}
-						{/* </> */}
-					{/* )} */}
+				{/* </> */}
+				{/* )} */}
 				{/* </Popover> */}
 				<Menu as="div" className="relative inline-block text-left mr-4 p-2">
 					<div className="">
@@ -142,7 +144,7 @@ export default function Header() {
 						leaveTo="transform opacity-0 scale-95"
 					>
 						<Menu.Items className="origin-top-right z-10 absolute right-0 mt-2 w-48 rounded-sm shadow-md p-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-							<Menu.Item>
+							{/* <Menu.Item>
 								{({ active }) => (
 									<div
 										className={classNames(
@@ -154,8 +156,8 @@ export default function Header() {
 										Your profile
 									</div>
 								)}
-							</Menu.Item>
-							<Menu.Item>
+							</Menu.Item> */}
+							{/* <Menu.Item>
 								{({ active }) => (
 									<div
 										className={classNames(
@@ -167,7 +169,7 @@ export default function Header() {
 										settings
 									</div>
 								)}
-							</Menu.Item>
+							</Menu.Item> */}
 							<Menu.Item>
 								{({ active }) => (
 									<div

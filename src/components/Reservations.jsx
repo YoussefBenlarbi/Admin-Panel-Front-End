@@ -77,8 +77,10 @@ function Reservations() {
 								.slice(entries.indexOfFirst, entries.indexOfLast)
 								.map((order) => (
 									<tr key={order.id}>
-										<td>
-											<Link to={`/order/${order.id}`}>#{order.id}</Link>
+										<td className=' text-blue-500 '>
+											{/* <Link to={`/order/${order.id}`}> */}
+												#{order.id}
+												{/* </Link> */}
 										</td>
 										{/* <td>
 											<Link to={`/customer/${order.user_id}`}>

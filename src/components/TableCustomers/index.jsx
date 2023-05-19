@@ -69,13 +69,8 @@ export function Table() {
 									{users &&
 										users.map((user) => (
 											<tr key={user.id}>
-												<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-													<a
-														href="#"
-														className="font-bold text-blue-500 hover:underline"
-													>
+												<td className="p-3 text-sm  font-bold text-blue-500 whitespace-nowrap">
 														{user.id}
-													</a>
 												</td>
 												<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
 													{user.name}

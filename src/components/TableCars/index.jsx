@@ -80,13 +80,10 @@ export function Table() {
 									{cars &&
 										cars.map((car) => (
 											<tr key={car.id}>
-												<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-													<a
-														href="#"
-														className="font-bold text-blue-500 hover:underline"
-													>
+												<td className="p-3 text-sm font-bold text-blue-500  whitespace-nowrap">
+													
 														{car.id}
-													</a>
+													
 												</td>
 												<td className="p-3 text-sm text-gray-700 whitespace-nowrap">
 													{car.name}
