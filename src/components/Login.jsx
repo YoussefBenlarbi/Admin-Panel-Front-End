@@ -53,7 +53,7 @@ function Login() {
 	const handleLogin = async (e) => {
 		e.preventDefault();
 		if (!email.trim('') || !password.trim('')) {
-			toast.error('Tous les champs sont oblipgatoires!', ToastConfig);
+			toast.error('Tous les champs sont obligatoires!', ToastConfig);
 		} else {
 			setLoading(true);
 			try {

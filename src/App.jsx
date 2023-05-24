@@ -24,7 +24,6 @@ function App() {
 	return (
 		<Router>
 			<ToastContainer />
-
 			<Routes>
 				<Route element={<PrivateRoute />}>
 					<Route path="/" element={<Layout />}>
