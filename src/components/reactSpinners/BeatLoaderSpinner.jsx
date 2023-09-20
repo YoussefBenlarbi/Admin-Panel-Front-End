@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BeatLoader } from 'react-spinners';
+import { BeatLoader, PuffLoader, RingLoader } from 'react-spinners';
 
 export default function BeatLoaderSpinner({ height }) {
 	// let [loading, setLoading] = useState(true);
@@ -9,7 +9,9 @@ export default function BeatLoaderSpinner({ height }) {
 			className="w-full flex justify-center items-center"
 			style={{ height: height }}
 		>
-			<BeatLoader color="#36d7b7" />
+			{/* <BeatLoader color="#36d7b7" /> */}
+			{/* <RingLoader color="#2a2d2c" /> */}
+			<PuffLoader color="#1b6455" />
 		</div>
 	);
 }

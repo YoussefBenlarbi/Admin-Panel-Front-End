@@ -49,7 +49,7 @@ function DashboardStatsGrid() {
 						</div>
 						<div className="pl-4">
 							<span className="text-sm text-gray-500 font-light">
-								Total sales{' '}
+							Confirmed reservations / last year{' '}
 							</span>
 							<div className="flex items center">
 								<strong className="text-xl text-gray-700 font-semibold">
@@ -65,7 +65,8 @@ function DashboardStatsGrid() {
 						</div>
 						<div className="pl-4">
 							<span className="text-sm text-gray-500 font-light">
-								Number users{' '}
+							User count on our platform 
+								{' '}
 							</span>
 							<div className="flex items center">
 								<strong className="text-xl text-gray-700 font-semibold">
@@ -81,7 +82,7 @@ function DashboardStatsGrid() {
 						</div>
 						<div className="pl-4">
 							<span className="text-sm text-gray-500 font-light">
-								Number Cars
+								Count of Cars in Stock
 							</span>
 							<div className="flex items center">
 								<strong className="text-xl text-gray-700 font-semibold">
@@ -97,7 +98,7 @@ function DashboardStatsGrid() {
 						</div>
 						<div className="pl-4">
 							<span className="text-sm text-gray-500 font-light">
-								Count Reservation
+								Total reservation count
 							</span>
 							<div className="flex items center">
 								<strong className="text-xl text-gray-700 font-semibold">

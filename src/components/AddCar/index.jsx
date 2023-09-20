@@ -69,7 +69,7 @@ export function AddCar() {
 				}
 			);
 			console.log(response.data);
-			toast.success('Voiture bien enregistrer !', ToastConfig);
+			toast.success('Car successfully registered !', ToastConfig);
 
 			navigate('/cars');
 		} catch (error) {

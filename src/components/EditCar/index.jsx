@@ -97,7 +97,7 @@ export function EditCar() {
 					},
 				}
 			);
-			toast.success('Voiture bien modifier !', ToastConfig);
+			toast.success('Car information is updated !', ToastConfig);
 			navigate('/cars');
 		} catch (error) {
 			console.log(error.response.data);
