@@ -26,7 +26,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	// },
 	{
 		key: 'orders',
-		label: 'Cars',
+		label: 'Products',
 		path: '/cars',
 		icon: <HiOutlineShoppingCart />,
 	},
@@ -38,7 +38,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	},
 	{
 		key: 'transactions',
-		label: 'Reservations',
+		label: 'Orders',
 		path: '/reservations',
 		icon: <HiOutlineDocumentText />,
 	},
