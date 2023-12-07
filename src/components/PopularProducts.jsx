@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthUser from './PrivateRoute/AuthUser';
 import BeatLoaderSpinner from './reactSpinners/BeatLoaderSpinner';
-import tshirt from '../assets/t-shirt.jpg';
+
 function PopularProducts() {
 	const [cars, setCars] = useState([]);
 	const { http } = AuthUser();
@@ -32,20 +32,13 @@ function PopularProducts() {
 									<div className="w-10 h-10 min-w-10 bg-gray-200 rounded">
 										<img
 											className="w-full h-full object-fill	 rounded-sm overflow-hidden"
-											// src={`http://127.0.0.1:8000/api/${car.thumbnailUrl}`}
-											src={tshirt}
+											src={`http://127.0.0.1:8000/api/${car.thumbnailUrl}`}
 											alt={car.name}
 										/>
 									</div>
 									<div className="ml-4 flex-1">
 										<p className={'text-sm text-gray-600 font-semibold'}>
-											{/* {car.name}{' '} */}
-											<h2 className="card-title flex items-center">
-												<span className="px-2 mt-2 text-white bg-blue-500 rounded dark:bg-blue-500">
-													U<span className="text-yellow-500 rounded">I</span>R
-												</span>{' '}
-												{'  '}Shirt
-											</h2>
+											{car.name}{' '}
 										</p>
 										{/* <span
 								className={`text-sm font-medium ${
@@ -60,8 +53,7 @@ function PopularProducts() {
 							</span> */}
 									</div>
 									<div className="text-xs text-gray-400 pl-2">
-										{car.dailyPrice}DH
-										 {/* /day */}
+										{car.dailyPrice}DH /day
 									</div>
 								</Link>
 							))}
