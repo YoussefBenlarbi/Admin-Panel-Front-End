@@ -59,7 +59,7 @@ export function AddCar() {
 
 		try {
 			const response = await axios.post(
-				'http://localhost:8000/api/cars',
+				'https://youssefbenlarbi.tech/api/cars',
 				formData,
 				{
 					headers: {

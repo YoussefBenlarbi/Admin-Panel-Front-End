@@ -87,7 +87,7 @@ export function EditCar() {
 				console.log(key, value);
 			}
 			const response = await axios.post(
-				`http://localhost:8000/api/cars/${id}`,
+				`https://youssefbenlarbi.tech/api/cars/${id}`,
 				formData,
 				{
 					headers: {

@@ -32,7 +32,7 @@ function PopularProducts() {
 									<div className="w-10 h-10 min-w-10 bg-gray-200 rounded">
 										<img
 											className="w-full h-full object-fill	 rounded-sm overflow-hidden"
-											src={`http://127.0.0.1:8000/api/${car.thumbnailUrl}`}
+											src={`https://youssefbenlarbi.tech/api/${car.thumbnailUrl}`}
 											alt={car.name}
 										/>
 									</div>

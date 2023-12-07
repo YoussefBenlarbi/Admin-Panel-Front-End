@@ -79,7 +79,7 @@ export function EditCar() {
 
 		try {
 			const response = await axios.put(
-				`http://localhost:8000/api/cars/${id}`,
+				`https://youssefbenlarbi.tech/api/cars/${id}`,
 				formData,
 				{
 					headers: {
